@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--<color name="colorBackground">#2BB999</color>-->
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorOpButtonBackground">#93C094</color>
+    <!--<color name="colorButtonBackground">#FFBF64</color>-->
+    <color name="colorButtonBackground">#F16D6C</color>
+    <!--<color name="colorAdditionalButtonBackground">#E74D14</color>-->
+    <color name="colorAdditionalButtonBackground">#FFBF64</color>
+
+
+</resources>
