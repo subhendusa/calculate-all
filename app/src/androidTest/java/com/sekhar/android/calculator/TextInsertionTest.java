@@ -28,20 +28,20 @@ public class TextInsertionTest {
             MainActivity.class);
 
     @Before
-    public void setUp() {
-    }
+    public void setUp() {}
 
     @Test
     public void changeDisplayText() {
         final String testString = "Espresso";
-
         onView(withId(R.id.txtCalcDisplay)).perform(typeText(testString));
+
         onView(withId(R.id.txtCalcDisplay)).check(matches(withText(testString)));
     }
 
     @Test
     public void enterNumbers() {
         onView(withId(R.id.btnOne)).perform(click());
+
         onView(withId(R.id.txtCalcDisplay)).check(matches(withText("1")));
     }
 
@@ -49,6 +49,7 @@ public class TextInsertionTest {
     public void enterTwoNumbers() {
         onView(withId(R.id.btnOne)).perform(click());
         onView(withId(R.id.btnTwo)).perform(click());
+
         onView(withId(R.id.txtCalcDisplay)).check(matches(withText("12")));
         onView(withId(R.id.txtResult)).check(matches(withText("12.0")));
     }
@@ -56,6 +57,7 @@ public class TextInsertionTest {
     @Test
     public void enterOnlyOperator() {
         onView(withId(R.id.btnAdd)).perform(click());
+
         onView(withId(R.id.txtCalcDisplay)).check(matches(withText("")));
         onView(withId(R.id.txtResult)).check(matches(withText("0")));
     }
@@ -64,7 +66,20 @@ public class TextInsertionTest {
     public void enterTwoOperators() {
         onView(withId(R.id.btnAdd)).perform(click());
         onView(withId(R.id.btnSub)).perform(click());
+
         onView(withId(R.id.txtCalcDisplay)).check(matches(withText("")));
         onView(withId(R.id.txtResult)).check(matches(withText("0")));
+    }
+
+    @Test
+    public void enterTwoOperatorsAfterNumbers() {
+        onView(withId(R.id.btnOne)).perform(click());
+        onView(withId(R.id.btnTwo)).perform(click());
+
+        onView(withId(R.id.btnAdd)).perform(click());
+        onView(withId(R.id.btnSub)).perform(click());
+
+        onView(withId(R.id.txtCalcDisplay)).check(matches(withText("12+")));
+        onView(withId(R.id.txtResult)).check(matches(withText("12.0")));
     }
 }

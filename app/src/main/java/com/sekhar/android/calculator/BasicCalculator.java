@@ -123,11 +123,12 @@ public class BasicCalculator extends Activity {
      * @return boolean
      */
     private boolean isOperatorAllowedToInsert() {
-        if (!isCursorAtStartPosition() && !isPrevCharacterOperator() && isNextCharacterOperator())
-            return true;
-        else {
-            return false;
+        if (!isCursorAtStartPosition() && !isPrevCharacterOperator()) {
+            if (isCursorAtEndPosition() || (!isCursorAtEndPosition() && !isNextCharacterOperator())) {
+                return true;
+            }
         }
+        return false;
     }
 
     /**
@@ -142,6 +143,21 @@ public class BasicCalculator extends Activity {
             return false;
         } else {
             return true;
+        }
+    }
+
+    /**
+     * Check if the cursor is positioned at the starting position
+     *
+     * @return boolean
+     */
+    private boolean isCursorAtEndPosition() {
+        int start = Math.max(txtDisplayScreen.getSelectionStart(), 0);
+
+        if (start == txtDisplayScreen.getText().length()) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -165,7 +181,7 @@ public class BasicCalculator extends Activity {
      * Check if the next character is already an operator
      * This is to prevent inserting 2 operators consecutively
      *
-     * @return
+     * @return boolean
      */
     private boolean isNextCharacterOperator() {
         int start = Math.max(txtDisplayScreen.getSelectionStart(), 0);
