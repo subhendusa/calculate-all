@@ -2,7 +2,6 @@ package com.sekhar.android.calculator;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -75,7 +74,7 @@ public class BasicCalculator extends Activity {
             public void onClick(View v) {
                 String dispText = txtDisplayScreen.getText().toString();
 
-                if (dispText != null && dispText.length() > 0) {
+                if (dispText.length() > 0) {
                     txtDisplayScreen.deletePrevCharCursorLocation();
                     txtResultScreen.setText(calculate(txtDisplayScreen.getText().toString()));
                 }
@@ -106,7 +105,7 @@ public class BasicCalculator extends Activity {
             public void onClick(View v) {
                 Button button = (Button) v;
 
-                if (!isPrevCharacterOperator()) { // Can't be 2 operators together
+                if (isOperatorAllowedToInsert()) { // Can't be 2 operators together
                     txtDisplayScreen.appendToCursorLocation(button.getText().toString());
                 }
             }
@@ -118,16 +117,60 @@ public class BasicCalculator extends Activity {
     }
 
     /**
+     * Check if it is allowed to insert Operator
+     * at that cursor position
+     *
+     * @return boolean
+     */
+    private boolean isOperatorAllowedToInsert() {
+        if (!isCursorAtStartPosition() && !isPrevCharacterOperator() && isNextCharacterOperator())
+            return true;
+        else {
+            return false;
+        }
+    }
+
+    /**
+     * Check if the cursor is positioned at the starting position
+     *
+     * @return boolean
+     */
+    private boolean isCursorAtStartPosition() {
+        int start = Math.max(txtDisplayScreen.getSelectionStart(), 0);
+
+        if (start > 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
      * Check if the previous character is already an operator
      * This is to prevent inserting 2 operators consecutively
      *
-     * @return
+     * @return boolean
      */
     private boolean isPrevCharacterOperator() {
         int start = Math.max(txtDisplayScreen.getSelectionStart(), 0);
 
-        Editable dispText = txtDisplayScreen.getText();
-        if (!Character.isDigit(dispText.charAt(start - 1))) { // Can't be 2 operators together
+        if (!Character.isDigit(txtDisplayScreen.getText().charAt(start - 1))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Check if the next character is already an operator
+     * This is to prevent inserting 2 operators consecutively
+     *
+     * @return
+     */
+    private boolean isNextCharacterOperator() {
+        int start = Math.max(txtDisplayScreen.getSelectionStart(), 0);
+
+        if (!Character.isDigit(txtDisplayScreen.getText().charAt(start + 1))) {
             return true;
         } else {
             return false;
@@ -152,7 +195,7 @@ public class BasicCalculator extends Activity {
         Expression expression = new ExpressionBuilder(expr).build();
         double result = 0;
         try {
-            result = (double) expression.evaluate();
+            result = expression.evaluate();
         } catch (ArithmeticException ex) {
             txtResultScreen.setText("Error");
         }

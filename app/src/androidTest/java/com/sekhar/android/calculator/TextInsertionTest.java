@@ -52,4 +52,19 @@ public class TextInsertionTest {
         onView(withId(R.id.txtCalcDisplay)).check(matches(withText("12")));
         onView(withId(R.id.txtResult)).check(matches(withText("12.0")));
     }
+
+    @Test
+    public void enterOnlyOperator() {
+        onView(withId(R.id.btnAdd)).perform(click());
+        onView(withId(R.id.txtCalcDisplay)).check(matches(withText("")));
+        onView(withId(R.id.txtResult)).check(matches(withText("0")));
+    }
+
+    @Test
+    public void enterTwoOperators() {
+        onView(withId(R.id.btnAdd)).perform(click());
+        onView(withId(R.id.btnSub)).perform(click());
+        onView(withId(R.id.txtCalcDisplay)).check(matches(withText("")));
+        onView(withId(R.id.txtResult)).check(matches(withText("0")));
+    }
 }
