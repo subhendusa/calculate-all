@@ -24,8 +24,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 @LargeTest
 public class TextInsertionTest {
     @Rule
-    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
-            MainActivity.class);
+    public ActivityTestRule<BasicCalculator> mActivityRule = new ActivityTestRule<>(
+            BasicCalculator.class);
 
     @Before
     public void setUp() {}
