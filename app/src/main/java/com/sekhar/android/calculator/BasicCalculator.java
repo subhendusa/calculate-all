@@ -107,6 +107,7 @@ public class BasicCalculator extends Activity {
 
                 if (isOperatorAllowedToInsert()) { // Can't be 2 operators together
                     txtDisplayScreen.appendToCursorLocation(button.getText().toString());
+                    txtResultScreen.setText(calculate(txtDisplayScreen.getText().toString()));
                 }
             }
         };
@@ -124,7 +125,8 @@ public class BasicCalculator extends Activity {
      */
     private boolean isOperatorAllowedToInsert() {
         if (!isCursorAtStartPosition() && !isPrevCharacterOperator()) {
-            if (isCursorAtEndPosition() || (!isCursorAtEndPosition() && !isNextCharacterOperator())) {
+            boolean isCursorAtEndPosition = isCursorAtEndPosition();
+            if (isCursorAtEndPosition || (!isCursorAtEndPosition && !isNextCharacterOperator())) {
                 return true;
             }
         }
@@ -186,7 +188,7 @@ public class BasicCalculator extends Activity {
     private boolean isNextCharacterOperator() {
         int start = Math.max(txtDisplayScreen.getSelectionStart(), 0);
 
-        if (!Character.isDigit(txtDisplayScreen.getText().charAt(start + 1))) {
+        if (!Character.isDigit(txtDisplayScreen.getText().charAt(start))) {
             return true;
         } else {
             return false;
@@ -198,8 +200,13 @@ public class BasicCalculator extends Activity {
         String resultString = "0";
         if (expr != null && expr.length() > 0) {
             // First & Last character can't be non-numeric
-            if (Character.isDigit(expr.charAt(0)) && Character.isDigit(expr.charAt(expr.length() - 1))) {
-                result = evaluateExpr(expr);
+            if (Character.isDigit(expr.charAt(0))) {
+                if(Character.isDigit(expr.charAt(expr.length() - 1))) {
+                    result = evaluateExpr(expr);
+                } else {
+                    //If last character is an operator
+                    result = evaluateExpr(expr.substring(0, expr.length() - 1));
+                }
             }
             return Double.toString(result);
         } else {
