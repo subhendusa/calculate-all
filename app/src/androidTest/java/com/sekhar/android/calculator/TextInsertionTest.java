@@ -33,14 +33,6 @@ public class TextInsertionTest {
     public void setUp() {}
 
     @Test
-    public void changeDisplayText() {
-        final String testString = "Espresso";
-        onView(withId(R.id.txtCalcDisplay)).perform(typeText(testString));
-
-        onView(withId(R.id.txtCalcDisplay)).check(matches(withText(testString)));
-    }
-
-    @Test
     public void enterNumbers() {
         onView(withId(R.id.btnOne)).perform(click());
         onView(withId(R.id.txtCalcDisplay)).check(matches(withText("1")));
@@ -71,6 +63,9 @@ public class TextInsertionTest {
 
         onView(withId(R.id.btnZero)).perform(click());
         onView(withId(R.id.txtCalcDisplay)).check(matches(withText("1234567890")));
+
+        onView(withId(R.id.btnDot)).perform(click());
+        onView(withId(R.id.txtCalcDisplay)).check(matches(withText("1234567890.")));
     }
 
     @Test
@@ -118,7 +113,7 @@ public class TextInsertionTest {
         onView(withId(R.id.btnSub)).perform(click());
 
         onView(withId(R.id.txtCalcDisplay)).check(matches(withText("12+")));
-        onView(withId(R.id.txtResult)).check(matches(withText("12.0")));
+        onView(withId(R.id.txtResult)).check(matches(withText("12")));
     }
 
     @Test
@@ -139,6 +134,6 @@ public class TextInsertionTest {
         onView(withId(R.id.btnSub)).perform(click());
 
         onView(withId(R.id.txtCalcDisplay)).check(matches(withText("12+3+4")));
-        onView(withId(R.id.txtResult)).check(matches(withText("19.0")));
+        onView(withId(R.id.txtResult)).check(matches(withText("19")));
     }
 }

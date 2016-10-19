@@ -39,7 +39,7 @@ public class NumericOperationTest {
         onView(withId(R.id.btnAdd)).perform(click());
         onView(withId(R.id.btnTwo)).perform(click());
         onView(withId(R.id.txtCalcDisplay)).check(matches(withText("1+2")));
-        onView(withId(R.id.txtResult)).check(matches(withText("3.0")));
+        onView(withId(R.id.txtResult)).check(matches(withText("3")));
     }
 
     @Test
@@ -56,11 +56,11 @@ public class NumericOperationTest {
         onView(withId(R.id.btnAdd)).perform(click());
 
         onView(withId(R.id.txtCalcDisplay)).check(matches(withText("12+3+4")));
-        onView(withId(R.id.txtResult)).check(matches(withText("19.0")));
+        onView(withId(R.id.txtResult)).check(matches(withText("19")));
 
         onView(withId(R.id.btnFive)).perform(click());
 
         onView(withId(R.id.txtCalcDisplay)).check(matches(withText("12+3+54")));
-        onView(withId(R.id.txtResult)).check(matches(withText("69.0")));
+        onView(withId(R.id.txtResult)).check(matches(withText("69")));
     }
 }

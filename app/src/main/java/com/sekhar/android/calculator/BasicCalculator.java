@@ -11,6 +11,9 @@ import com.sekhar.android.calculator.view.ViewEditText;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 /**
  * Created by sekhar on 08-07-2016.
  */
@@ -208,10 +211,15 @@ public class BasicCalculator extends Activity {
                     result = evaluateExpr(expr.substring(0, expr.length() - 1));
                 }
             }
-            return Double.toString(result);
+            return formatResult(result);
         } else {
             return resultString;
         }
+    }
+
+    private String formatResult(Double result) {
+        NumberFormat nf = new DecimalFormat("##.#########");
+        return nf.format(result);
     }
 
     private double evaluateExpr(String expr) {
