@@ -17,6 +17,7 @@
         android:id="@+id/txtCalcDisplay"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
+        android:background="@android:color/transparent"
         />
     <TextView
         android:layout_width="wrap_content"
