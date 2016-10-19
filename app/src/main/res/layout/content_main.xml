@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,69 +8,174 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:theme="@style/MyTheme"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.sekhar.android.calculator.BasicCalculator"
-    android:orientation="vertical"
-    android:theme="@style/MyTheme">
+    tools:context="com.sekhar.android.calculator.TestActivity">
 
     <com.sekhar.android.calculator.view.ViewEditText
         android:id="@+id/txtCalcDisplay"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:background="@android:color/transparent"
+        android:layout_alignParentTop="true"
+        android:layout_weight=".4"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:id="@+id/txtResult"
+        android:layout_below="@+id/txtCalcDisplay"
+        android:layout_weight=".1"
         />
 
-    <GridLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:id="@+id/numPad"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_weight=".5"
         >
-        <GridLayout
-            android:columnCount="3"
-            android:paddingLeft="0dp"
-            android:paddingRight="0dp"
-            android:orientation="horizontal"
-            android:theme="@style/MyTheme.Button">
 
-            <Button android:text="1" android:id="@+id/btnOne"/>
-            <Button android:text="2" android:id="@+id/btnTwo"/>
-            <Button android:text="3" android:id="@+id/btnThree"/>
-            <Button android:text="4" android:id="@+id/btnFour"/>
-            <Button android:text="5" android:id="@+id/btnFive"/>
-            <Button android:text="6" android:id="@+id/btnSix"/>
-            <Button android:text="7" android:id="@+id/btnSeven"/>
-            <Button android:text="8" android:id="@+id/btnEight"/>
-            <Button android:text="9" android:id="@+id/btnNine"/>
-            <Button android:text="." android:id="@+id/btnDot"/>
-            <Button android:text="0" android:id="@+id/btnZero"/>
-            <Button android:text="00" android:id="@+id/btnDblZero"/>
-        </GridLayout>
         <GridLayout
-            android:columnCount="1"
-            android:orientation="vertical"
-            android:theme="@style/MyTheme.Panel.Button.Operator">
-            <Button android:text="+" android:id="@+id/btnAdd"/>
-            <Button android:text="-" android:id="@+id/btnSub"/>
-            <Button android:text="*" android:id="@+id/btnMult"/>
-            <Button android:text="/" android:id="@+id/btnDiv"/>
+            android:id="@+id/numPad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:columnCount="2">
+
+            <GridLayout
+                android:layout_columnWeight=".75"
+                android:layout_gravity="fill_horizontal"
+                android:columnCount="3"
+                android:orientation="horizontal"
+                android:theme="@style/MyTheme.Button">
+
+                <Button
+                    android:id="@+id/btnOne"
+                    android:layout_columnWeight=".33"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="1" />
+
+                <Button
+                    android:id="@+id/btnTwo"
+                    android:layout_columnWeight=".33"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="2" />
+
+                <Button
+                    android:id="@+id/btnThree"
+                    android:layout_columnWeight=".33"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="3" />
+
+                <Button
+                    android:id="@+id/btnFour"
+                    android:layout_columnWeight=".33"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="4" />
+
+                <Button
+                    android:id="@+id/btnFive"
+                    android:layout_columnWeight=".33"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="5" />
+
+                <Button
+                    android:id="@+id/btnSix"
+                    android:layout_columnWeight=".33"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="6" />
+
+                <Button
+                    android:id="@+id/btnSeven"
+                    android:layout_columnWeight=".33"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="7" />
+
+                <Button
+                    android:id="@+id/btnEight"
+                    android:layout_columnWeight=".33"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="8" />
+
+                <Button
+                    android:id="@+id/btnNine"
+                    android:layout_columnWeight=".33"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="9" />
+
+                <Button
+                    android:id="@+id/btnDot"
+                    android:layout_columnWeight=".33"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="." />
+
+                <Button
+                    android:id="@+id/btnZero"
+                    android:layout_columnWeight=".33"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/btnDblZero"
+                    android:layout_columnWeight=".33"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="00" />
+            </GridLayout>
+
+            <GridLayout
+                android:layout_columnWeight=".25"
+                android:columnCount="1"
+                android:orientation="vertical"
+                android:theme="@style/MyTheme.Panel.Button.Operator">
+
+                <Button
+                    android:id="@+id/btnAdd"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="+" />
+
+                <Button
+                    android:id="@+id/btnSub"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="-" />
+
+                <Button
+                    android:id="@+id/btnMult"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="*" />
+
+                <Button
+                    android:id="@+id/btnDiv"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="/" />
+            </GridLayout>
         </GridLayout>
-    </GridLayout>
-    <GridLayout
-        android:columnCount="4"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:theme="@style/MyTheme.Panel.Button.Additional"
-        >
-        <Button android:text="" />
-        <Button android:text="&lt;-" android:id="@+id/btnBackSpace"/>
-        <Button android:text="=" />
-        <Button android:text="C" android:id="@+id/btnC"/>
-    </GridLayout>
-</GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:columnCount="4"
+            android:orientation="horizontal"
+            android:theme="@style/MyTheme.Panel.Button.Additional">
+
+            <Button
+                android:layout_columnWeight=".25"
+                android:text="" />
+
+            <Button
+                android:id="@+id/btnBackSpace"
+                android:layout_columnWeight=".25"
+                android:text="&lt;-" />
+
+            <Button
+                android:layout_columnWeight=".25"
+                android:text="=" />
+
+            <Button
+                android:id="@+id/btnC"
+                android:layout_columnWeight=".25"
+                android:text="C" />
+        </GridLayout>
+    </LinearLayout>
+</RelativeLayout>
